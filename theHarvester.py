@@ -86,9 +86,9 @@ def start(argv):
             dnstld=True
         elif opt == '-b':
             engine = arg
-            if engine not in ("google", "linkedin", "pgp", "all","google-profiles","bing","bing_api","yandex","people123","jigsaw"):
+            if engine not in ("google", "linkedin", "pgp", "all","google-profiles","bing","bing_api","yandex","people123","jigsaw","exalead"):
                 usage()
-                print "Invalid search engine, try with: bing, google, linkedin, pgp, exalead, jigsaw, bing_api, people123, google-profiles"
+                print "Invalid search engine, try with: bing, google, linkedin, pgp, exalead, jigsaw, bing_api, people123, google-profiles, exalead"
                 sys.exit()
             else:
                 pass
