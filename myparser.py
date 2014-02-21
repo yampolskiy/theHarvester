@@ -25,8 +25,8 @@ class parser:
 
     def emails(self):
         self.genericClean()
-        reg_emails = re.compile('[a-zA-Z0-9.\-_]*' + '@' + '[a-zA-Z0-9.-]*' + self.word)
-        self.temp = reg_emails.findall(self.results)
+        reg_emails = re.compile('[a-zA-Z0-9.\-_]*' + '@' + '[a-zA-Z0-9.-]*' + self.word, re.I)
+        self.temp = reg_emails.findall(self.results.lower())
         emails = self.unique()
         return emails
 
@@ -43,7 +43,7 @@ class parser:
         return urls
 
     def people_linkedin(self):
-        reg_people = re.compile(r"<a\b[^>]*>([\w]*\s[\w]*)\s-.*?<\/a>", re.IGNORECASE | re.DOTALL)
+        reg_people = re.compile(r"<a\b[^>]*>(\w*\s\w*)\s-.*?<\/a>", re.IGNORECASE | re.DOTALL)
 
         results = []  #self.temp = reg_people.search(self.results)
         self.temp = reg_people.findall(self.results)
