@@ -22,7 +22,7 @@ class search_bing_api(search_bing):
 		print "[-] Searching Bing using API Key:"
 
 		if self.bing_api_key=="":
-			print "Cannot perform a Bing API Search without a Key in discovery/bingsearch.py"
+			print "Cannot perform a Bing API Search without a Key in discovery/bingsearchapi.py"
 			return
 
 		while (self.counter < self.limit):
