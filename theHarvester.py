@@ -110,6 +110,10 @@ def start(argv):
 
 	print_banner()
 
+	if not sys.argv[1:]:
+		print parser.print_help()
+		sys.exit()
+
 	if not options.word:
 		parser.error ("Domain search is mandatory")
 		sys.exit()

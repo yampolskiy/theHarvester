@@ -1,5 +1,8 @@
 from lib import htmlExport
-from lxml import etree
+try:
+  from lxml import etree
+except:
+	print "[WARNING] Dependency lxml not found. Download and install from - http://lxml.de/"
 
 class HarvesterOutput:
 	def __init__(self, output_results = None):
