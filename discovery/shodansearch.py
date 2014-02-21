@@ -4,7 +4,7 @@ import sys
 class search_shodan():
 	def __init__(self,host):
 		self.host=host
-		self.shodan_api_key = "oykKBEq2KRySU33OxizNkOir5PgHpMLv"
+		self.shodan_api_key = "<Get your own>"
 
 		if self.shodan_api_key =="":
 			print "You need an API key in order to use SHODAN database. You can get one here: http://www.shodanhq.com/"
