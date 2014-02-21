@@ -10,7 +10,6 @@ class parser:
         self.temp = []
 
     def genericClean(self):
-
         for e in ('<em>','<b>', '</b>', '</em>', '<strong>', '</strong>'):
             self.results = string.replace(self.results, e, '')
 
@@ -18,7 +17,6 @@ class parser:
             self.results = string.replace(self.results, e, ' ')
 
     def urlClean(self):
-
         for e in ('<em>','</em>'):
             self.results = string.replace(self.results, e, '')
 
@@ -45,19 +43,13 @@ class parser:
         return urls
 
     def people_linkedin(self):
-
-        reg_people = re.compile(r"<a\b[^>]*>(.*?)</a>", re.IGNORECASE | re.DOTALL)
+        reg_people = re.compile(r"<a\b[^>]*>([\w]*\s[\w]*)\s-.*?<\/a>", re.IGNORECASE | re.DOTALL)
 
         results = []  #self.temp = reg_people.search(self.results)
         self.temp = reg_people.findall(self.results)
         for x in self.temp:
-            if '| LinkedIn' in x:
-                y = x
-                for e in (' | LinkedIn', ' profiles ', 'LinkedIn', '"', '<b>', '</b>'):
-                    y = string.replace(y, e, '')
-
-                if y != " ":
-                    results.append(HTMLParser.HTMLParser().unescape(y))
+          if x != " ":
+            results.append(HTMLParser.HTMLParser().unescape(x))
 
         self.temp = results
         results = self.unique()
