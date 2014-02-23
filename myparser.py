@@ -25,7 +25,7 @@ class parser:
 
     def emails(self):
         self.genericClean()
-        reg_emails = re.compile('[a-zA-Z0-9.\-_]*' + '@' + '[a-zA-Z0-9.-]*' + self.word, re.I)
+        reg_emails = re.compile('[\w.-]*@[a-z0-9.-]*' + self.word.replace('.', r'\.'), re.IGNORECASE)
         self.temp = reg_emails.findall(self.results.lower())
         emails = self.unique()
         return emails
@@ -45,7 +45,7 @@ class parser:
     def people_linkedin(self):
         reg_people = re.compile(r"<a\b[^>]*>(\w*\s\w*)\s-.*?<\/a>", re.IGNORECASE | re.DOTALL)
 
-        results = []  #self.temp = reg_people.search(self.results)
+        results = []
         self.temp = reg_people.findall(self.results)
         for x in self.temp:
           if x != " ":
@@ -56,7 +56,7 @@ class parser:
         return results
 
     def people_123people(self):
-        reg_people = re.compile('www\.123people\.com/s/[a-zA-Z0-9.-_]*\+[a-zA-Z0-9.-_]*\+?[a-zA-Z0-9.-_]*\"')
+        reg_people = re.compile('www\.123people\.com/s/[\w.-]*\+[\w.-]*\+?[\w.-]*\"')
         self.temp = reg_people.findall(self.results)
         self.temp2 = []
         for x in self.temp:
@@ -66,7 +66,6 @@ class parser:
 
     def people_jigsaw(self):
         res = []
-        #reg_people = re.compile("'tblrow' title='[a-zA-Z0-9.-]*'><span class='nowrap'/>")
         reg_people = re.compile("href=javascript:showContact\('[0-9]*'\)>[a-zA-Z0-9., ]*</a></span>")
         self.temp = reg_people.findall(self.results)
         for x in self.temp:
@@ -75,7 +74,7 @@ class parser:
         return res
 
     def profiles(self):
-        reg_people = re.compile('">[a-zA-Z0-9._ -]* - <em>Google Profile</em>')
+        reg_people = re.compile('">[\w. -]* - <em>Google Profile</em>')
         self.temp = reg_people.findall(self.results)
         results = []
         for x in self.temp:
@@ -89,14 +88,14 @@ class parser:
 
     def hostnames(self):
         self.genericClean()
-        reg_hosts = re.compile('[a-zA-Z0-9.-]*\.' + self.word)
+        reg_hosts = re.compile('[a-z0-9.-]*\.' + self.word, re.IGNORECASE)
         self.temp = reg_hosts.findall(self.results)
         hostnames = self.unique()
         return hostnames
 
 
     def set(self):
-        reg_sets = re.compile('>[a-zA-Z0-9]*</a></font>')
+        reg_sets = re.compile('>[a-z0-9]*</a></font>', re.IGNORECASE)
         self.temp = reg_sets.findall(self.results)
         sets = []
         for x in self.temp:
