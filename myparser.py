@@ -24,11 +24,12 @@ class parser:
             self.results = string.replace(self.results, e, ' ')
 
     def emails(self):
+        reg_emails =  re.compile(r"([\w.%+-]+@([A-Z0-9.-]+\.)*"+self.word.replace('.', r'\.')+")", re.IGNORECASE)
         self.genericClean()
-        reg_emails = re.compile('[\w.-]*@[a-z0-9.-]*' + self.word.replace('.', r'\.'), re.IGNORECASE)
-        self.temp = reg_emails.findall(self.results.lower())
+        self.temp = [x[0] for x in reg_emails.findall(self.results.lower())]
         emails = self.unique()
         return emails
+
 
     def fileurls(self, file):
         urls = []
